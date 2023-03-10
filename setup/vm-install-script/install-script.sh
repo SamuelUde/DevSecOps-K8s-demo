@@ -58,6 +58,15 @@ echo "untaint controlplane node"
 kubectl taint node $(kubectl get nodes -o=jsonpath='{.items[].metadata.name}')  node-role.kubernetes.io/master-
 kubectl get node -o wide
 
+# Check the taint on the node and get the node-name
+Kubectl get node -o wide
+# Fetch the applied/default taint
+Kubectl describe node <node-name> | grep -i taint
+# Add a minus(-) sign at the end of the taint to remove the 
+# applied/default taint
+Kubectl taint node <node-name> <taint>-
+
+
 
 
 echo ".........----------------#################._.-.-Java and MAVEN-.-._.#################----------------........."
